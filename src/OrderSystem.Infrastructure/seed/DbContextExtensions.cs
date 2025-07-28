@@ -54,7 +54,7 @@ public static class DbContextExtensions
                 OrderItems = new List<OrderItem> { orderItem1, orderItem2 }
             };
 
-            var customer = new Customer
+            var customer = new Domain.Entities.Customer
             {
                 Id = customerId,
                 Name = "Mohammad Ayman",

@@ -25,6 +25,17 @@ public static class ServiceCollectionExtension
         services.AddScoped<Order.GetById.IRepository, Order.GetById.Repository>();
         #endregion
 
+        #region Customer
+        services.AddScoped<Customer.Exists.IRespository, Customer.Exists.Repository>();
+        services.AddScoped<Customer.GetAllCustomers.IRepository, Customer.GetAllCustomers.Repository>();
+        services.AddScoped<Customer.GetAllOrders.IRepository, Customer.GetAllOrders.Repository>();
+        #endregion
+
+        #region Invoices
+        services.AddScoped<Invoices.GetById.IRepository, Invoices.GetById.Repository>();
+        services.AddScoped<Invoices.GetAll.IRepository, Invoices.GetAll.Repository>();
+        #endregion
+
         return services;
     }
 

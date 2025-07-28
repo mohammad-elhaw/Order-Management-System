@@ -26,6 +26,10 @@ public static class ServiceCollectionExtension
         services.AddScoped<Order.Add.IRepository, Order.Add.Repository>();
         services.AddScoped<Order.Update.IRepository, Order.Update.Repository>();
         #endregion
+
+        #region Customer
+        services.AddScoped<Customer.Add.IRepository, Customer.Add.Repository>();
+        #endregion
         //services.AddDbContext<AppIdentityDbContext>(options =>
         //    options.UseInMemoryDatabase("IdentityDb"));
 

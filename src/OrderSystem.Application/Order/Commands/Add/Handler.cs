@@ -29,8 +29,6 @@ public class Handler(
         if(saveResult <= 0)
             throw new UnHandledException("Failed to add order");
 
-        // If the order was added successfully, return the response
-
         return new Response
         {
             Id = order.Id,
