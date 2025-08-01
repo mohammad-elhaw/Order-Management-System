@@ -1,10 +1,13 @@
-﻿using OrderSystem.Domain.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using OrderSystem.Domain.Entities;
 using OrderSystem.Domain.Enums;
 
 namespace OrderSystem.Infrastructure.seed;
 public static class DbContextExtensions
 {
-    public static void SeedDatabase(this AppDbContext context)
+    public static async Task SeedDatabase(this AppDbContext context,
+        RoleManager<IdentityRole<Guid>> roleManager,
+        UserManager<Domain.Entities.User> userManager)
     {
         if (!context.Products.Any())
         {
@@ -65,7 +68,35 @@ public static class DbContextExtensions
             context.Customers.Add(customer);
         }
 
-        context.SaveChanges();
-    
+        await context.SaveChangesAsync();
+
+
+        if(!await roleManager.RoleExistsAsync("Admin"))
+            await roleManager.CreateAsync(new IdentityRole<Guid>("Admin"));
+
+        if (!await roleManager.RoleExistsAsync("Customer"))
+            await roleManager.CreateAsync(new IdentityRole<Guid>("Customer"));
+
+
+        string adminEmail = "admin@gmail.com";
+        string adminPassword = "admin123";
+
+        var adminUser = await userManager.FindByEmailAsync(adminEmail);
+        if (adminUser == null)
+        {
+            adminUser = new Domain.Entities.User
+            {
+                UserName = "mohammadaymanelhaw",
+                FullName = "Mohammad Ayman Elhaw",
+                Email = adminEmail,
+                EmailConfirmed = true
+            };
+            var result = await userManager.CreateAsync(adminUser, adminPassword);
+            if (result.Succeeded)
+            {
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+        }
+
     }
 }

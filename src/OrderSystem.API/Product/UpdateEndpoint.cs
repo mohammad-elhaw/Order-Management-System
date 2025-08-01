@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderSystem.Application.Product.Commands.Update;
 
@@ -6,6 +7,7 @@ namespace OrderSystem.API.Product;
 public class UpdateEndpoint(IMediator mediator) : BaseController
 {
     [HttpPut("{id:guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateProduct(Guid id,
         [FromBody] Request request)
     {

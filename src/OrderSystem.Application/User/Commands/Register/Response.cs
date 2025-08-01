@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OrderSystem.Application.User.Commands.Register;
-internal class Response
+﻿namespace OrderSystem.Application.User.Commands.Register;
+public class Response
 {
+    public string Email { get; set; } = null!;
+    public string UserName { get; set; } = null!;
+    public string FullName { get; set; } = null!;
 }

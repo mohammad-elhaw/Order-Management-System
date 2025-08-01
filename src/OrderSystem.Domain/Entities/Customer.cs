@@ -8,5 +8,8 @@ public class Customer : BaseEntity
     [EmailAddress]
     [Length(10, 100)]
     public string Email { get; set; } = null!;
+
+    public Guid? UserId { get; set; }
+    public User? User { get; set; }
     public List<Order> Orders { get; set; } = [];
 }

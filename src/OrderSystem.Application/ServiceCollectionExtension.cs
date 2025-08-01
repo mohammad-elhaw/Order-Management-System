@@ -14,6 +14,7 @@ public static class ServiceCollectionExtension
         {
             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
+        services.AddScoped<TokenService.ITokenService, TokenService.TokenService>();
         services.AddInfrastructure();
         services.AddQueries();
         return services;

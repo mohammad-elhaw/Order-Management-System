@@ -6,4 +6,5 @@ public record Request : IRequest<Response>
     public string FullName { get; init; } = null!;
     public string Email { get; init; } = null!;
     public string Password { get; init; } = null!;
+    public string UserName { get; init; } = null!;
 }
