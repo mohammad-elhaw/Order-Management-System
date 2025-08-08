@@ -33,7 +33,7 @@ builder.Services.AddSwaggerGen(opts =>
 
         opts.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
-            Name = "Authoriztion",
+            Name = "Authorization",
             Type = SecuritySchemeType.Http,
             Scheme = "Bearer",
             BearerFormat = "JWT",
@@ -78,8 +78,8 @@ builder.Services.AddAuthentication(opts =>
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(key),
             ValidateIssuer = true,
-            ValidIssuer = builder.Configuration["Issuer"], // Issuer name
-            ValidAudience = builder.Configuration["Audience"], // Audience name
+            ValidIssuer = builder.Configuration["Jwt:Issuer"], // Issuer name
+            ValidAudience = builder.Configuration["Jwt:Audience"], // Audience name
             ValidateAudience = true,
             ValidateLifetime = true,
             ClockSkew = TimeSpan.Zero
